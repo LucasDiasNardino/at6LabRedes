@@ -1,13 +1,18 @@
 import socket
 
-def udp_client(host='127.0.0.1', port=65433, file_path='udpText.txt'):
+def udp_client(file_path, host='127.0.0.1', port=65432):
+    # Cria o socket UDP
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        # Lê o arquivo em modo binário
         with open(file_path, 'rb') as f:
-            print(f"Enviando arquivo '{file_path}' para {host}:{port}...")
-            for data in f:
+            while True:
+                data = f.read(1024)
+                if not data:
+                    break  # Sai do loop quando não há mais dados a enviar
                 s.sendto(data, (host, port))
-                print(f"Enviado {len(data)} bytes.")
-        print("Arquivo enviado com sucesso.")
+        
+        # Envia um indicador de fim de transmissão
+        s.sendto(b'EOF', (host, port))
 
 # Executa o cliente UDP
-udp_client()
+udp_client('udpText.txt')
