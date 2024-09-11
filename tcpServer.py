@@ -1,7 +1,7 @@
 import socket
 import sys
 
-def tcp_server(host='127.0.0.1', port=65432):
+def tcp_server(host='127.0.0.1', port=65433):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((host, port))
         s.listen()

@@ -1,7 +1,7 @@
 import socket
 import sys
 
-def tcp_client(host='127.0.0.1', port=65432, file_path='tcpText.txt'):
+def tcp_client(host='127.0.0.1', port=65433, file_path='tcpText.txt'):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((host, port))
         with open(file_path, 'rb') as f:
