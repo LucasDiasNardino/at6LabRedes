@@ -1,4 +1,5 @@
 import socket
+import os
 
 def udp_server(host='127.0.0.1', port=65432):
     # Cria o socket UDP
@@ -8,6 +9,7 @@ def udp_server(host='127.0.0.1', port=65432):
 
         # Abre o arquivo para escrita em modo binário
         with open('recebido_udp.txt', 'wb') as f:
+            file_size = 0  # Variável para armazenar o tamanho do arquivo em bits
             while True:
                 print("Aguardando dados...")
                 data, addr = s.recvfrom(1024)  # Recebe até 1024 bytes de dados
@@ -20,6 +22,8 @@ def udp_server(host='127.0.0.1', port=65432):
                     print(f"Recebido {len(data)} bytes de {addr}.")
                     f.write(data)  # Escreve os dados recebidos no arquivo
                     f.flush()  # Garante que os dados sejam escritos imediatamente no disco
+                    file_size += len(data) * 8  # Atualiza o tamanho do arquivo em bits
+                    print(f"Tamanho do arquivo: {file_size} bits")
                 else:
                     print("Nenhum dado recebido. Verifique o cliente.")
                     break
