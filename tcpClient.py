@@ -41,7 +41,3 @@ if (len(sys.argv) > 2):
 elif (len(sys.argv) > 1):
     print("Defina o tamanho do arquivo e o tamanho do buffer:\n python3 tcpClient.py <fileSize> <buffer_size>")
     sys.exit(1)
-
-else:
-    print("Defina o tamanho do arquivo e o tamanho do buffer:\n python3 tcpClient.py <fileSize> <buffer_size>")
-    sys.exit(1)
